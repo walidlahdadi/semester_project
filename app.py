@@ -69,9 +69,9 @@ def get_chart_data():
 
 # Configuration de la base de données MySQL
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_USER'] = ''
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'forensic_project'
+app.config['MYSQL_DB'] = ''
 
 mysql = MySQL(app) 
 
