@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+<!-- Author : LAHDADI Walid -->
+{% block content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic Analysis - Home</title>
+
+    <style>
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #6a11cb;
+            color: white;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+        }
+    </style>
+
+    <div class="content container mt-4">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to Forensic Analysis</h1>
+            <p class="lead">Your one-stop solution for memory, disk, and network forensic analysis.</p>
+            <hr class="my-4">
+            <p>Explore advanced tools and techniques to analyze digital evidence and uncover critical insights.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title"><i class="fas fa-memory"></i> Memory Dump Analysis</h5>
+            </div>
+            <div class="card-body">
+                <p>Memory forensics involves analyzing volatile memory (RAM) to extract artifacts such as running processes, open network connections, and malware.</p>
+                <div class="chart-container">
+                    <canvas id="memoryChart"></canvas>
+                </div>
+                <a href="/volatility3" class="btn btn-primary">Analyze with Volatility3</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title"><i class="fas fa-hdd"></i> Disk Analysis</h5>
+            </div>
+            <div class="card-body">
+                <p>Disk forensics focuses on analyzing storage devices to recover deleted files, examine file systems, and identify suspicious activity.</p>
+                <div class="chart-container">
+                    <canvas id="diskChart"></canvas>
+                </div>
+                <a href="#" class="btn btn-primary">Explore Disk Tools</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title"><i class="fas fa-network-wired"></i> Network Analysis</h5>
+            </div>
+            <div class="card-body">
+                <p>Network forensics involves capturing and analyzing network traffic to detect intrusions, data exfiltration, and other malicious activities.</p>
+                <div class="chart-container">
+                    <canvas id="networkChart"></canvas>
+                </div>
+                <a href="#" class="btn btn-primary">Analyze Network Traffic</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title"><i class="fas fa-info-circle"></i> Additional Forensic Resources</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li><strong>Timeline Analysis:</strong> Visualize events in chronological order to identify patterns.</li>
+                    <li><strong>Malware Analysis:</strong> Examine malicious software to understand its behavior.</li>
+                    <li><strong>Incident Response:</strong> Respond to security incidents with forensic evidence.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/get_chart_data")
+                .then((response) => response.json())
+                .then((data) => {
+                    new Chart(document.getElementById("memoryChart"), {
+                        type: "bar",
+                        data: {
+                            labels: data.memory.labels,
+                            datasets: [{
+                                label: "Memory Usage",
+                                data: data.memory.values,
+                                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                                borderColor: "rgba(54, 162, 235, 1)",
+                                borderWidth: 1,
+                            }],
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { display: true },
+                                title: { display: true, text: "Memory Analysis" },
+                            },
+                        },
+                    });
+
+                    new Chart(document.getElementById("diskChart"), {
+                        type: "bar",
+                        data: {
+                            labels: data.disk.labels,
+                            datasets: [{
+                                label: "Disk Usage",
+                                data: data.disk.values,
+                                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                                borderColor: "rgba(75, 192, 192, 1)",
+                                borderWidth: 1,
+                            }],
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { display: true },
+                                title: { display: true, text: "Disk Analysis" },
+                            },
+                        },
+                    });
+
+                    new Chart(document.getElementById("networkChart"), {
+                        type: "bar",
+                        data: {
+                            labels: data.network.labels,
+                            datasets: [{
+                                label: "Network Usage",
+                                data: data.network.values,
+                                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                                borderColor: "rgba(255, 99, 132, 1)",
+                                borderWidth: 1,
+                            }],
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { display: true },
+                                title: { display: true, text: "Network Analysis" },
+                            },
+                        },
+                    });
+                })
+                .catch((error) => console.error("Error fetching chart data:", error));
+        });
+    </script>
+    <style>
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #6a11cb;
+            color: white;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px auto; 
+            text-align: center;
+        }
+        canvas {
+            display: inline-block; 
+        }
+    </style>
+    
+{% endblock %}

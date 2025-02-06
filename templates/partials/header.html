@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <!-- Logo and Title -->
+        <a class="navbar-brand" href="#">
+            <img src="/static/images/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            Forensic Analysis
+        </a>
+        <!-- Toggle for responsive menu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="memoryMenu" role="button" data-bs-toggle="dropdown">Memory Forensic</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Volatility3</a></li>
+                        <li><a class="dropdown-item" href="#">Tool2</a></li>
+                        <li><a class="dropdown-item" href="#">Tool3</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="diskMenu" role="button" data-bs-toggle="dropdown">Disk Forensic</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tool1</a></li>
+                        <li><a class="dropdown-item" href="#">Tool2</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="networkMenu" role="button" data-bs-toggle="dropdown">Network Forensic</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tool1</a></li>
+                        <li><a class="dropdown-item" href="#">Tool2</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">Reports</a></li>
+            </ul>
+            <!-- Search Bar -->
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+            <!-- User Profile -->
+            <a href="#" class="btn btn-outline-light ms-2">User Profile</a>
+        </div>
+    </div>
+</nav>
